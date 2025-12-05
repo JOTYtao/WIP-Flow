@@ -15,5 +15,5 @@ You guys can download regional solar irradiance data throught [CM SAF](https://w
 
 ### Prediction Surface Solar Irradiance.
 <div align="center">
-<img src="vis.gif" width="900">
+<img src="vis.gif" width="1000">
 </div>
