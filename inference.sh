@@ -3,11 +3,10 @@ set -euo pipefail
 
 # ------------- User-configurable paths -------------
 PYTHON_BIN="python"  # or absolute path to python
-INFER_SCRIPT="/home/joty/code/flow_matching/inference_lut.py"
+INFER_SCRIPT="/inference.py"
 DATA_ROOT="/home/joty/code/flow_matching/data"
-CKPT_PATH="/home/joty/code/flow_matching/exp/checkpoints/test7/epoch=7-val_loss=0.167420.ckpt"
-LUT_DIR="/home/joty/code/flow_matching/database"
-SAVE_DIR="/home/joty/code/flow_matching/test_results/lut16"
+CKPT_PATH=""
+SAVE_DIR="/home/joty/code/flow_matching/test_results/"
 
 # ------------- Inference hyperparameters -----------
 NUM_GPUS=1                 # set 0 for CPU
@@ -42,10 +41,6 @@ BS=16
 STRIDE=1
 FORECAST=true
 USE_POSSIBLE_STARTS=true
-LUT_TOPK=1
-LUT_TAU=10.0
-LUT_BETA=0
-LUT_AGG="weighted_mean"
 # ------------- Build CLI ---------------------------
 CLI_ARGS=(
   --ckpt_path "${CKPT_PATH}"
@@ -64,12 +59,6 @@ CLI_ARGS=(
   --num_flow_steps "${NUM_FLOW_STEPS}"
   --eps "${EPS}"
   --t_schedule "${T_SCHEDULE}"
-  --lut_path "${LUT_DIR}" \
-  --use_lut \
-  --lut_topk ${LUT_TOPK} \
-  --lut_tau ${LUT_TAU} \
-  --lut_beta ${LUT_BETA} \
-  --lut_agg "${LUT_AGG}"
 )
 
 if [[ "${ENABLE_WANDB}" -eq 1 ]]; then
